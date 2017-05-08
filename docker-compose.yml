@@ -1,0 +1,50 @@
+version: "3"
+services:
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile.apache
+            args:
+                PHP_VERSION: "7"
+        volumes:
+            - ./var/log/apache2:/var/log/apache2
+            - ./var/www/html:/var/www/html
+        ports:
+            - 80:80
+            - 1080:1080
+            - 1025:1025
+        links:
+            - db:mysql
+            - memcached:memcached
+            - redis:redis
+        environment:
+            - DOCUMENT_ROOT=/var/www/html
+            - ENVIRONMENT=Development
+            - PLATFORM=Magento
+            - PHP_VERSION=5.6
+            - APACHE_VERSION=2
+            - REPO_LINK=none
+        restart: always
+    db:
+        build:
+            context: .
+            dockerfile: Dockerfile.mysql
+        volumes:
+            - ./var/lib/mysql:/var/lib/mysql
+        ports:
+            - 3306:3306
+        environment:
+            # - MYSQL_ROOT_PASSWORD
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_DATABASE=dev
+            - MYSQL_USER=admin
+            - MYSQL_PASSWORD=admin
+        restart: always
+    memcached:
+        image: memcached
+        ports:
+            - "11211:11211"
+    redis:
+        image: redis
+        ports:
+            - "6379:6379"

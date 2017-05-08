@@ -1,0 +1,96 @@
+FROM php:7-apache
+
+# ============================
+# FIX PERMISSIONS / ADD DEV USER
+# ============================
+RUN usermod -u 1000 www-data
+RUN groupmod -g 1000 www-data
+RUN useradd -p dev -ms /bin/bash dev
+
+
+# ============================
+# UPDATE/UPGRADE APT PACKAGES
+# ============================
+RUN apt-get update
+RUN apt-get upgrade -y
+
+
+# ============================
+# UPDATE/UPGRADE APT PACKAGES
+# ============================
+
+RUN apt-get install -y \
+    build-essential \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libmcrypt-dev \
+    libpng12-dev \
+    libpq-dev \
+    sqlite3 libsqlite3-dev \
+    libxml2-dev
+
+
+RUN apt-get install -y git vim cron htop zip unzip pwgen curl wget chkconfig ruby rubygems ruby-dev screen openssl
+
+
+# ============================
+# CONFIG PHP EXTENSIONS
+# ============================
+
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+RUN docker-php-ext-install gd
+RUN docker-php-ext-install iconv
+RUN docker-php-ext-install mcrypt
+RUN docker-php-ext-install mbstring
+RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install pgsql
+RUN docker-php-ext-install pdo_mysql pdo_pgsql pdo_sqlite
+RUN docker-php-ext-install soap
+RUN docker-php-ext-install tokenizer
+RUN docker-php-ext-install zip
+
+# ============================
+# Setup Composer
+# ============================
+
+RUN php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');"
+RUN php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('/tmp/composer-setup.php'); } echo PHP_EOL;"
+RUN php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+
+
+# ============================
+# Setup/Configure Node.js
+# ============================
+
+ADD etc/node/package.json /var/www/html/
+RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
+RUN apt-get install -y nodejs
+RUN npm update
+RUN npm init -y
+
+
+RUN npm install gulp-cli -g --save
+RUN npm install gulp -D --save
+RUN npm install -g bower --save
+RUN npm install browser-sync --save
+RUN npm install connect-browser-sync --save
+
+# ============================
+# Setup Mailcatcher
+# ============================
+
+RUN gem update --system
+RUN gem install mailcatcher
+RUN mailcatcher -i 0.0.0.0
+
+# ============================
+# Configure Apache/PHP
+# ============================
+
+RUN rm /etc/apache2/sites-enabled/*
+ADD etc/apache2/vhost.conf /etc/apache2/sites-available/default.conf
+ADD etc/php/php.ini /usr/local/etc/php/
+
+RUN a2enmod rewrite
+RUN a2ensite default
