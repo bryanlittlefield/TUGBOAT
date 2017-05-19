@@ -1,4 +1,4 @@
-FROM php:7-apache
+FROM php:5.6-apache
 
 # ============================
 # FIX PERMISSIONS / ADD DEV USER
@@ -48,6 +48,13 @@ RUN docker-php-ext-install pdo_mysql pdo_pgsql pdo_sqlite
 RUN docker-php-ext-install soap
 RUN docker-php-ext-install tokenizer
 RUN docker-php-ext-install zip
+RUN apt-get install -y zlib1g-dev libicu-dev g++
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-install intl
+RUN apt-get install -y libxslt-dev
+RUN docker-php-ext-install xsl
+RUN docker-php-ext-configure bcmath
+RUN docker-php-ext-install bcmath
 
 # ============================
 # Setup Composer
