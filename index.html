@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="description" content="The straight to code approach for php developers local environments"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/liftoff/assets/css/style.css?v=7c5f16d6a10a7d63bfbc6a83d570767aa282ddf2">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">liftoff</h1>
+      <h2 class="project-tagline">The straight to code approach for php developers local environments</h2>
+      
+        <a href="https://github.com/bryanlittlefield/liftoff" class="btn">View on GitHub</a>
+      
+      
+    </section>
+
+    <section class="main-content">
+      <h1 id="-liftoff-">🚀 LiftOff 🚀</h1>
+<hr />
+
+<h3 id="welcome-to-liftoff-the-straight-to-code-approach-for-php-developers-local-environments">Welcome to LiftOff, the straight to code approach for php developers’ local environments.</h3>
+
+<blockquote>
+  <p>Built on top of the official Docker repositories for php and MySQL, these preconfigured containers should have everything you need for your next php website or application. If the project requires further configuration, LiftOff can be extended to provided access to additional packages and configurations to the environment.</p>
+</blockquote>
+
+<hr />
+<h3 id="built-in-server-configurations-include">Built in Server Configurations include:</h3>
+
+<h3 id="environment-setup">Environment Setup:</h3>
+
+<ul>
+  <li><strong>Server Packages</strong>
+    <div class="highlighter-rouge"><pre class="highlight"><code>Debian 8.0 (jessie)
+PHP 7
+Ruby 2.1.x
+memcached
+redis
+Vim
+wget
+cURL
+pwgen
+Zip
+HTOP
+Cron
+Git
+GD and Imagick
+Composer
+Beanstalkd
+Node
+NPM
+Mcrypt
+</code></pre>
+    </div>
+    <p><strong>and more! Just run: <code class="highlighter-rouge">apt list --installed</code> in the container to get the full list</strong></p>
+  </li>
+  <li><strong>PHP Extensions</strong>
+    <div class="highlighter-rouge"><pre class="highlight"><code>Core
+ctype
+curl
+date
+dom
+ereg
+fileinfo
+filter
+ftp
+gd
+hash
+iconv
+json
+libxml
+mbstring
+mcrypt
+mysqli
+mysqlnd
+openssl
+pcre
+PDO
+pdo_mysql
+pdo_pgsql
+pdo_sqlite
+pgsql
+Phar
+posix
+readline
+Reflection
+session
+SimpleXML
+soap
+SPL
+sqlite3
+standard
+tokenizer
+xml
+xmlreader
+xmlwriter
+zip
+zlib
+</code></pre>
+    </div>
+  </li>
+  <li><strong>Node</strong>
+    <div class="highlighter-rouge"><pre class="highlight"><code>Grunt
+Bower
+Gulp
+Browsersync
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="ssh-logins">SSH Logins</h2>
+<p><strong>root</strong>: <code class="highlighter-rouge">docker exec -i -t [container-name] bash</code>
+<strong>dev</strong>: <code class="highlighter-rouge">docker exec -i -t  -u dev [container-name] bash</code></p>
+
+<p>_</p>
+<h2 id="login-to-db-using-sequel-pro">Login to DB Using Sequel Pro</h2>
+<p>If using default settings the login to SequelPro is the following:</p>
+
+<ul>
+  <li><strong>host:</strong></li>
+  <li><strong>user:</strong></li>
+  <li><strong>passsword:</strong></li>
+</ul>
+
+<hr />
+
+<h2 id="mailcatcher">Mailcatcher</h2>
+<p>Run: <code class="highlighter-rouge">mailcatcher --http-ip=0.0.0.0</code>  to turn on mailcatcher (on by default)
+Then visit: http://127.0.0.1:1080</p>
+
+<hr />
+
+<h2 id="useful-commands">Useful Commands</h2>
+
+<p>List Running Services: <code class="highlighter-rouge">chkconfig</code>
+Check Groups: <code class="highlighter-rouge">groups</code>
+List Installed PHP Extensions : <code class="highlighter-rouge">php –me</code></p>
+
+<hr />
+
+<h2 id="using-docker-advanced">Using Docker (ADVANCED):</h2>
+
+<h3 id="docker-images">DOCKER IMAGES</h3>
+<hr />
+
+<p><strong>List Cached Images</strong></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>docker images
+</code></pre>
+</div>
+
+<p><strong>Remove Cached Image</strong></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>docker rmi [image_name]
+</code></pre>
+</div>
+
+<p><strong>Remove ALL Cached Images</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker rmi $(docker images -q)
+</code></pre>
+</div>
+
+<p><strong>View Orphaned Images (un-tagged)</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker images --filter dangling=true
+</code></pre>
+</div>
+
+<p><strong>Remove Orphaned Images (un-tagged)</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker rmi --f $(docker images --filter dangling=true -q)
+</code></pre>
+</div>
+
+<h3 id="docker-volumes">DOCKER VOLUMES</h3>
+<hr />
+
+<p><strong>List Virtual Volumes</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker volume ls
+</code></pre>
+</div>
+
+<p><strong>Create a Virtual Volume</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker volume create --name mysqldb
+</code></pre>
+</div>
+
+<p><strong>Get Info on a Virtual Volumes</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker volume inspect [volume-name]
+</code></pre>
+</div>
+
+<p><strong>List Orphaned Volumes</strong></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>docker volume ls -qf dangling=true
+</code></pre>
+</div>
+
+<p><strong>Remove Orphaned Volumes</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker volume rm $(docker volume ls -qf dangling=true)
+</code></pre>
+</div>
+
+<h3 id="docker-compose">DOCKER COMPOSE</h3>
+<blockquote>
+  <p><em>Compose is a tool for defining and running multi-container Docker applications.</em></p>
+  <hr />
+</blockquote>
+
+<p><strong>Run docker-compose.yml files</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker-compose up -d
+</code></pre>
+</div>
+
+<p><strong>Shut down Environment</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker-compose down
+</code></pre>
+</div>
+
+<p><strong>Rebuild images before starting containers</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker-compose up --build
+</code></pre>
+</div>
+
+<p><strong>Example Compose File (docker-compose.yml)</strong></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>wordpress:
+	# build: .
+	image: wordpress
+	links:
+		- db:mysql
+	ports:
+		- 80:80
+	volumes:
+		- ~/Sites/docker/public:/var/www/html
+db:
+	image: mysql
+	ports:
+		- 3306:3306
+	environment:
+		MYSQL_ROOT_PASSWORD: password
+		MYSQL_DATABASE: wordpress
+	volumes:
+		- mysqldb:/var/lib/mysql
+</code></pre>
+</div>
+
+<h3 id="good-reads">Good Reads</h3>
+<hr />
+<p><a href="https://scotch.io/tutorials/getting-started-with-docker">https://scotch.io/tutorials/getting-started-with-docker</a></p>
+
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-dockerise-and-deploy-multiple-wordpress-applications-on-ubuntu">https://www.digitalocean.com/community/tutorials/how-to-dockerise-and-deploy-multiple-wordpress-applications-on-ubuntu</a></p>
+
+<p><a href="https://github.com/wsargent/docker-cheat-sheet#images">https://github.com/wsargent/docker-cheat-sheet#images</a></p>
+
+<p><a href="https://www.viget.com/articles/how-to-use-docker-on-os-x-the-missing-guide">https://www.viget.com/articles/how-to-use-docker-on-os-x-the-missing-guide</a></p>
+
+<p><a href="https://github.com/wsargent/docker-cheat-sheet#images">https://github.com/wsargent/docker-cheat-sheet#images</a></p>
+
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04">https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04</a></p>
+
+<p><a href="https://medium.com/dev-tricks/apache-and-php-on-docker-44faef716150#.b4wargdpa">https://medium.com/dev-tricks/apache-and-php-on-docker-44faef716150#.b4wargdpa</a></p>
+
+<p><a href="https://deliciousbrains.com/vagrant-docker-wordpress-development/">https://deliciousbrains.com/vagrant-docker-wordpress-development/</a></p>
+
+
+      <footer class="site-footer">
+        
+          <span class="site-footer-owner"><a href="https://github.com/bryanlittlefield/liftoff">liftoff</a> is maintained by <a href="https://github.com/bryanlittlefield">bryanlittlefield</a>.</span>
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+
+    
+  </body>
+</html>
