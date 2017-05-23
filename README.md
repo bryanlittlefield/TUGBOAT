@@ -1,6 +1,6 @@
 # 🚀 LiftOff 🚀
 - - - -
-![TUGBOAT](https://cl.ly/083Z1r3X231F)
+![](https://cl.ly/083Z1r3X231F/download/Image%202017-05-23%20at%202.16.05%20AM.png)
 
 ### Welcome to LiftOff, the straight to code approach for php developers’ local environments.
 
