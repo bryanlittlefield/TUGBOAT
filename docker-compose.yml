@@ -18,7 +18,7 @@ services:
             - memcached:memcached
             - redis:redis
         environment:
-            - DOCUMENT_ROOT=/var/www/html/htdocs/
+            - DOCUMENT_ROOT=/var/www/html
             - ENVIRONMENT=Development
             - PLATFORM=Magento
             - PHP_VERSION=5.6
