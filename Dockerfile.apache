@@ -1,5 +1,6 @@
+FROM php:7.1-apache
 #FROM php:7.0-apache
-FROM php:5.6-apache
+#FROM php:5.6-apache
 
 # ============================
 # FIX PERMISSIONS / ADD DEV USER
@@ -108,16 +109,27 @@ RUN a2ensite default
 
 RUN wget http://xdebug.org/files/xdebug-2.5.4.tgz
 
-#php 7
+#php 7.1
+RUN tar -xvzf xdebug-2.5.4.tgz && cd xdebug-2.5.4 && phpize && ./configure && make && cp modules/xdebug.so /usr/local/lib/php/extensions/no-debug-non-zts-20160303
+RUN echo "zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20160303/xdebug.so"  >> /usr/local/etc/php/php.ini
+
+#php 7.0
 #RUN tar -xvzf xdebug-2.5.4.tgz && cd xdebug-2.5.4 && phpize && ./configure && make && cp modules/xdebug.so /usr/local/lib/php/extensions/no-debug-non-zts-20151012
 #RUN echo "zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20151012/xdebug.so"  >> /usr/local/etc/php/php.ini
 
 #php 5.6
-RUN tar -xvzf xdebug-2.5.4.tgz && cd xdebug-2.5.4 && phpize && ./configure && make && cp modules/xdebug.so /usr/local/lib/php/extensions/no-debug-non-zts-20131226
-RUN echo "zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20131226/xdebug.so" >> /usr/local/etc/php/php.ini
+#RUN tar -xvzf xdebug-2.5.4.tgz && cd xdebug-2.5.4 && phpize && ./configure && make && cp modules/xdebug.so /usr/local/lib/php/extensions/no-debug-non-zts-20131226
+#RUN echo "zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20131226/xdebug.so" >> /usr/local/etc/php/php.ini
 
 RUN echo "xdebug.remote_connect_back = 0" >> /usr/local/etc/php/php.ini
 RUN echo "xdebug.remote_enable=1" >> /usr/local/etc/php/php.ini
 RUN echo "xdebug.remote_host=10.254.254.254"  >> /usr/local/etc/php/php.ini
 RUN echo "xdebug.remote_autostart = 0" >> /usr/local/etc/php/php.ini
 RUN echo "xdebug.profiler_enable = 0" >> /usr/local/etc/php/php.ini
+
+# ===========================
+# Configure PHPUnit
+# ===========================
+
+RUN wget https://phar.phpunit.de/phpunit.phar && chmod +x phpunit.phar && cp phpunit.phar /usr/local/bin/phpunit 
+RUN apt-get install subversion -y
