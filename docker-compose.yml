@@ -18,12 +18,8 @@ services:
             - memcached:memcached
             - redis:redis
         environment:
-            - DOCUMENT_ROOT=/var/www/html
-            - ENVIRONMENT=Development
-            - PLATFORM=Magento
-            - PHP_VERSION=5.6
-            - APACHE_VERSION=2
-            - REPO_LINK=none
+            DOCUMENT_ROOT: "/var/www/html"
+            REPO_LINK: "none"
         restart: always
     db:
         build:
@@ -33,12 +29,11 @@ services:
             - ./var/lib/mysql:/var/lib/mysql
         ports:
             - 3306:3306
-        environment:
-            # - MYSQL_ROOT_PASSWORD
-            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-            - MYSQL_DATABASE=dev
-            - MYSQL_USER=admin
-            - MYSQL_PASSWORD=admin
+        environment: 
+           MYSQL_DATABASE: "dev"
+           MYSQL_USER: "admin"
+           MYSQL_PASSWORD: "admin"
+           MYSQL_ALLOW_EMPTY_PASSWORD: "yes" 
         restart: always
     memcached:
         image: memcached
