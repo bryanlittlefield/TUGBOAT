@@ -97,9 +97,9 @@ _
 ## Login to DB Using Sequel Pro
 If using default settings the login to SequelPro is the following:
 
-- **host:**
-- **user:**
-- **passsword:**
+- **host:** `127.0.0.1`
+- **user:** `admin`
+- **passsword:** `admin`
 
 - - - -
 
