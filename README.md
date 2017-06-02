@@ -151,6 +151,48 @@ docker images --filter dangling=true
 docker rmi --f $(docker images --filter dangling=true -q)
 ```
 
+### DOCKER CONTAINERS
+- - - -
+> *Docker containers wrap up a piece of software in a complete filesystem that contains everything it needs to run: code, runtime, system tools, system libraries TLDR; anything you can install on a server*
+
+**Run Container(s)**
+
+```
+docker run [container]
+-d = run in background
+-v = set volume sync ~/your/drive/path:/var/www/html 
+-p 80:80 open ports 
+```
+
+**Remove/Delete Local Containers** 
+
+```
+docker rm [container_id]
+```
+
+**Create a Volume to Store your Data**
+
+```
+docker volume create --name mysqldb
+```
+
+**List Containers (Running or Stopped)**
+
+```
+docker ps -a
+```
+
+**SSH into Docker Container (Web Server)**
+
+```
+docker exec -i -t [container-name] bash`
+```
+
+**Delete all containers**
+
+```
+docker rm $(docker ps -a -q)
+```
 
 
 ### DOCKER VOLUMES
