@@ -277,18 +277,25 @@ db:
 
 ### Good Reads
 - - - -
-[https://scotch.io/tutorials/getting-started-with-docker](https://scotch.io/tutorials/getting-started-with-docker)
+
+####Docker Cheat Sheet
+[https://github.com/wsargent/docker-cheat-sheet#images](https://github.com/wsargent/docker-cheat-sheet#images)
+
+####Docker Tools
+[https://github.com/veggiemonk/awesome-docker](https://github.com/veggiemonk/awesome-docker)
+
+####Vagrant vs Docker
+[https://deliciousbrains.com/vagrant-docker-wordpress-development/](https://deliciousbrains.com/vagrant-docker-wordpress-development/)
+
+
+####Docker In A Nut Shell
+[https://prakhar.me/docker-curriculum/](https://prakhar.me/docker-curriculum/)
+
+[http://takacsmark.com/getting-started-with-docker-in-your-project-step-by-step-tutorial/](http://takacsmark.com/getting-started-with-docker-in-your-project-step-by-step-tutorial/)
+
+[https://severalnines.com/blog/mysql-docker-containers-understanding-basics](https://severalnines.com/blog/mysql-docker-containers-understanding-basics)
+
+[https://www.digitalocean.com/community/tutorials/naming-docker-containers-3-tips-for-beginners](https://www.digitalocean.com/community/tutorials/naming-docker-containers-3-tips-for-beginners)
 
 [https://www.digitalocean.com/community/tutorials/how-to-dockerise-and-deploy-multiple-wordpress-applications-on-ubuntu](https://www.digitalocean.com/community/tutorials/how-to-dockerise-and-deploy-multiple-wordpress-applications-on-ubuntu)
 
-[https://github.com/wsargent/docker-cheat-sheet#images](https://github.com/wsargent/docker-cheat-sheet#images)
-
-[https://www.viget.com/articles/how-to-use-docker-on-os-x-the-missing-guide](https://www.viget.com/articles/how-to-use-docker-on-os-x-the-missing-guide)
-
-[https://github.com/wsargent/docker-cheat-sheet#images](https://github.com/wsargent/docker-cheat-sheet#images)
-
-[https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04)
-
-[https://medium.com/dev-tricks/apache-and-php-on-docker-44faef716150#.b4wargdpa](https://medium.com/dev-tricks/apache-and-php-on-docker-44faef716150#.b4wargdpa)
-
-[https://deliciousbrains.com/vagrant-docker-wordpress-development/](https://deliciousbrains.com/vagrant-docker-wordpress-development/)
