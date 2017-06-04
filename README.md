@@ -278,17 +278,17 @@ db:
 ### Good Reads
 - - - -
 
-####Docker Cheat Sheet
+#### Docker Cheat Sheet
 [https://github.com/wsargent/docker-cheat-sheet#images](https://github.com/wsargent/docker-cheat-sheet#images)
 
-####Docker Tools
+#### Docker Tools
 [https://github.com/veggiemonk/awesome-docker](https://github.com/veggiemonk/awesome-docker)
 
-####Vagrant vs Docker
+#### Vagrant vs Docker
 [https://deliciousbrains.com/vagrant-docker-wordpress-development/](https://deliciousbrains.com/vagrant-docker-wordpress-development/)
 
 
-####Docker In A Nut Shell
+#### Docker In A Nut Shell
 [https://prakhar.me/docker-curriculum/](https://prakhar.me/docker-curriculum/)
 
 [http://takacsmark.com/getting-started-with-docker-in-your-project-step-by-step-tutorial/](http://takacsmark.com/getting-started-with-docker-in-your-project-step-by-step-tutorial/)
