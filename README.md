@@ -1,11 +1,11 @@
 ![](https://cl.ly/083Z1r3X231F/download/Image%202017-05-23%20at%202.16.05%20AM.png)
 
-### Welcome to TUGBOAT
+# Welcome to TUGBOAT
 
 > Built on top of the official Docker repositories for php and MySQL, these preconfigured containers should have everything you need for your next php website or application. If the project requires further configuration, TUGBOAT can be extended to provided access to additional packages and configurations to the environment.  
 
 - - - -
-###  Built in Server Configurations include:
+##  Built in Server Configurations include:
 
 ### Environment Setup:
 
