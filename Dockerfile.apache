@@ -7,6 +7,12 @@ RUN usermod -u 1000 www-data
 RUN groupmod -g 1000 www-data
 RUN useradd -p dev -ms /bin/bash dev
 
+# ============================
+# ADD APT SOURCES
+# ============================
+RUN echo "deb http://ftp.debian.org/debian jessie-backports main" | tee -a /etc/apt/sources.list
+
+
 
 # ============================
 # UPDATE/UPGRADE APT PACKAGES
@@ -33,6 +39,11 @@ RUN apt-get install -y \
 
 RUN apt-get install -y git vim cron htop zip unzip pwgen curl wget chkconfig ruby rubygems ruby-dev screen openssl
 
+# ============================
+# Install CertBot
+# ============================
+
+RUN apt-get install -y python-certbot-apache -t jessie-backports
 
 # ============================
 # CONFIG PHP EXTENSIONS

@@ -11,6 +11,7 @@ services:
             - ./var/www/html:/var/www/html
         ports:
             - 80:80
+            - 443:443
             - 1080:1080
             - 1025:1025
         links:
