@@ -287,9 +287,10 @@ db:
 #### Vagrant vs Docker
 [https://deliciousbrains.com/vagrant-docker-wordpress-development/](https://deliciousbrains.com/vagrant-docker-wordpress-development/)
 
-
 #### Docker In A Nut Shell
 [https://prakhar.me/docker-curriculum/](https://prakhar.me/docker-curriculum/)
+
+[https://blog.codeship.com/docker-machine-compose-and-swarm-how-they-work-together/](https://blog.codeship.com/docker-machine-compose-and-swarm-how-they-work-together/)
 
 [http://takacsmark.com/getting-started-with-docker-in-your-project-step-by-step-tutorial/](http://takacsmark.com/getting-started-with-docker-in-your-project-step-by-step-tutorial/)
 
@@ -298,4 +299,9 @@ db:
 [https://www.digitalocean.com/community/tutorials/naming-docker-containers-3-tips-for-beginners](https://www.digitalocean.com/community/tutorials/naming-docker-containers-3-tips-for-beginners)
 
 [https://www.digitalocean.com/community/tutorials/how-to-dockerise-and-deploy-multiple-wordpress-applications-on-ubuntu](https://www.digitalocean.com/community/tutorials/how-to-dockerise-and-deploy-multiple-wordpress-applications-on-ubuntu)
+
+### Docker Configurations
+[https://blog.codeship.com/ensuring-containers-are-always-running-with-dockers-restart-policy/](https://blog.codeship.com/ensuring-containers-are-always-running-with-dockers-restart-policy/)
+
+[https://blog.codeship.com/continuous-integration-and-delivery-with-docker/](https://blog.codeship.com/continuous-integration-and-delivery-with-docker/)
 
