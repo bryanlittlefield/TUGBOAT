@@ -90,10 +90,11 @@ Browsersync
 - - - -
 
 ## SSH Logins
-**root**: `docker exec -i -t [container-name] bash`
-**dev**: `docker exec -i -t  -u dev [container-name] bash`
+- **root**: `docker exec -i -t [container-name] bash`
+- **dev**: `docker exec -i -t  -u dev [container-name] bash`
 
-_
+- - - -
+
 ## Login to DB Using Sequel Pro
 If using default settings the login to SequelPro is the following:
 
@@ -101,6 +102,37 @@ If using default settings the login to SequelPro is the following:
 - **user:** `admin`
 - **passsword:** `admin`
 
+- - - -
+
+## Magento Database Connection Example:
+
+```
+<connection>
+   <host><![CDATA[my_container_name_1]]></host>
+   <username><![CDATA[admin]]></username>
+   <password><![CDATA[admin]]></password>
+   <dbname><![CDATA[dev]]></dbname>
+   <active>1</active>
+</connection>
+```
+- - - -
+
+## Wordpress Database Connection Example:
+
+```
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define( 'DB_NAME', 'dev' );
+
+/** MySQL database username */
+define( 'DB_USER', 'admin' );
+
+/** MySQL database password */
+define( 'DB_PASSWORD', 'admin' );
+
+/** MySQL hostname */
+define( 'DB_HOST', 'my_container_name_1' );
+```
 - - - -
 
 ## Mailcatcher
@@ -111,9 +143,9 @@ Then visit: http://127.0.0.1:1080
 
 ## Useful Commands
 
-List Running Services: `chkconfig`
-Check Groups: `groups`
-List Installed PHP Extensions : `php –me`
+- List Running Services: `chkconfig`
+- Check Groups: `groups`
+- List Installed PHP Extensions : `php –me`
 
 - - - -
 
