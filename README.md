@@ -143,9 +143,9 @@ Then visit: http://127.0.0.1:1080
 
 ## Useful Commands
 
-- List Running Services: `chkconfig`
-- Check Groups: `groups`
-- List Installed PHP Extensions : `php –me`
+- List Running Services: `docker exec -i -t [web-container-name] chkconfig`
+- Check Groups: `docker exec -i -t [web-container-name] groups`
+- List Installed PHP Extensions : `docker exec -i -t [web-container-name] php –me`
 
 - - - -
 
@@ -217,7 +217,7 @@ docker ps -a
 **SSH into Docker Container (Web Server)**
 
 ```
-docker exec -i -t [container-name] bash`
+docker exec -i -t [container-name] bash
 ```
 
 **Delete all containers**
