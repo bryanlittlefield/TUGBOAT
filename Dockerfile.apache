@@ -7,6 +7,11 @@ RUN usermod -u 1000 www-data
 RUN groupmod -g 1000 www-data
 RUN useradd -p dev -ms /bin/bash dev
 
+# ============================
+# ADD APT SOURCES
+# ============================
+# RUN echo "deb http://ftp.debian.org/debian jessie-backports main" | tee -a /etc/apt/sources.list
+
 
 # ============================
 # UPDATE/UPGRADE APT PACKAGES
@@ -64,7 +69,6 @@ RUN php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '669656bab316
 RUN php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 
-
 # ============================
 # Setup/Configure Node.js
 # ============================
@@ -91,12 +95,38 @@ RUN gem install mailcatcher
 RUN mailcatcher -i 0.0.0.0
 
 # ============================
+# Create SSL Cert
+# ============================
+
+RUN mkdir /etc/apache2/ssl
+
+RUN openssl genrsa -des3 -passout pass:x -out server.pass.key 2048
+RUN openssl rsa -passin pass:x -in server.pass.key -out /etc/apache2/ssl/apache.key
+RUN rm server.pass.key
+RUN openssl req -new -key /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/server.csr  \
+  -subj "/C=US/ST=Washington/L=SEA/O=coolblue/OU=IT Department/CN=localhost"
+RUN openssl x509 -req -days 365 -in /etc/apache2/ssl/server.csr -signkey /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+RUN chmod 600 /etc/apache2/ssl/*
+
+# ============================
 # Configure Apache/PHP
 # ============================
 
 RUN rm /etc/apache2/sites-enabled/*
 ADD etc/apache2/vhost.conf /etc/apache2/sites-available/default.conf
+ADD etc/apache2/vhost-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 ADD etc/php/php.ini /usr/local/etc/php/
 
 RUN a2enmod rewrite
+RUN a2enmod ssl
+RUN a2enmod proxy
+RUN a2enmod headers
+
+# ============================
+# Enable Sites
+# ============================
+
+RUN a2ensite default-ssl
 RUN a2ensite default
+
+#RUN service apache2 reload
