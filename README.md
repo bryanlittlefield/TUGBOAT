@@ -202,6 +202,23 @@ docker run [container]
 docker rm [container_id]
 ```
 
+**Remove/Delete ALL containers**
+
+```
+docker rm $(docker ps -a -q)
+```
+
+
+**Stop Local Container** 
+```
+docker stop [container_id]
+```
+
+**Stop ALL Local Containers** 
+```
+docker stop $(docker ps -a -q)
+```
+
 **Create a Volume to Store your Data**
 
 ```
@@ -218,12 +235,6 @@ docker ps -a
 
 ```
 docker exec -i -t [container-name] bash
-```
-
-**Delete all containers**
-
-```
-docker rm $(docker ps -a -q)
 ```
 
 
