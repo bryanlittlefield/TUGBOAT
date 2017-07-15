@@ -115,7 +115,7 @@ If using default settings the login to SequelPro is the following:
    <active>1</active>
 </connection>
 ```
-> **!MAGENTO NOTE!** It is HIGHLY recomended that if you are running Magento that you DO NOT mount your Magento root volume. Instead run them inside of the container due to Magento's large codebase. To remove the mounted /var/www/html volume go to the `docker-compose.yml` file and delete the line under volumes that looks like: `./var/www/html:/var/www/html` 
+> **!MAGENTO NOTE!** It is HIGHLY recomended that if you are running Magento that you DO NOT mount your Magento root volume  due to Magento's large codebase. Instead run them inside of the web container. To remove the mounted /var/www/html volume go to the `docker-compose.yml` file and delete the line under volumes that looks like: `./var/www/html:/var/www/html` 
 
 > *See Github Issue: https://github.com/magento/magento2/issues/7859 - Hopefully this gets fixed soon!*
 
