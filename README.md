@@ -14,7 +14,6 @@
 Debian 8.0 (jessie)
 PHP 7
 Ruby 2.1.x
-memcached
 redis
 Vim
 wget
@@ -63,6 +62,7 @@ pgsql
 Phar
 posix
 readline
+redis
 Reflection
 session
 SimpleXML
@@ -108,13 +108,17 @@ If using default settings the login to SequelPro is the following:
 
 ```
 <connection>
-   <host><![CDATA[my_container_name_1]]></host>
+   <host><![CDATA[my_container_name_1]]></host> -OR-  <host><![CDATA[mysql]]></host>
    <username><![CDATA[admin]]></username>
    <password><![CDATA[admin]]></password>
    <dbname><![CDATA[dev]]></dbname>
    <active>1</active>
 </connection>
 ```
+> **!MAGENTO NOTE!** It is HIGHLY recomended that if you are running Magento that you DO NOT sync your files. Instead run them inside of the container due to Magento's large codebase. To remove the mounted /var/www/html volume go to the `docker-compose.yml` file and delete the line under volumes that looks like: `./var/www/html:/var/www/html` 
+
+> *See Github Issue: https://github.com/magento/magento2/issues/7859 - Hopefully this gets fixed soon!*
+
 - - - -
 
 ## Wordpress Database Connection Example:
@@ -131,7 +135,7 @@ define( 'DB_USER', 'admin' );
 define( 'DB_PASSWORD', 'admin' );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'my_container_name_1' );
+define( 'DB_HOST', 'my_container_name_1' ); -OR- define( 'DB_HOST', 'mysql' );
 ```
 - - - -
 
@@ -180,7 +184,7 @@ docker images --filter dangling=true
 **Remove Orphaned Images (un-tagged)**
 
 ```
-docker rmi --f $(docker images --filter dangling=true -q)
+docker rmi -f $(docker images --filter dangling=true -q)
 ```
 
 ### DOCKER CONTAINERS
