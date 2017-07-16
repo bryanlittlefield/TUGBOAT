@@ -95,6 +95,23 @@ Browsersync
 
 - - - -
 
+## Login to Web Container Using SFTP Client
+If using default settings the login for SFTP is the following:
+
+> - **host:** `127.0.0.1`
+> - **port:** `2222`
+> - **user:** `root`
+> - **passsword:** `root`
+
+> - **host:** `127.0.0.1`
+> - **port:** `2222`
+> - **user:** `dev`
+> - **passsword:** `dev`
+
+> **!NOTE!** If you are having any issues logging in first confirm your hostkey by directly running ssh from a terminal `ssh -p2222 dev@127.0.0.1`. If that still doesnt not work log directly into the container and stap and stop ssh `service ssh restart` 
+
+- - - -
+
 ## Login to DB Using Sequel Pro
 If using default settings the login to SequelPro is the following:
 
