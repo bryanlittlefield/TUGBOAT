@@ -5,26 +5,26 @@ services:
             context: .
             dockerfile: Dockerfile.apache
             args:
-                PHP_VERSION: "7"
+                - ROOT_USER_PASS=root
+                - DEV_USER_PASS=dev
         volumes:
             - ./var/log/apache2:/var/log/apache2
+            # Example of a Host Mounted Volume
             - ./var/www/html:/var/www/html
+            # Example of a Named Data Volume
+            #- web-data-volume:/var/www/html
         ports:
-            - 80:80
-            - 443:443
-            - 1080:1080
-            - 1025:1025
+            - "80:80"
+            - "443:443"
+            - "1080:1080"
+            - "1025:1025"
+            - "2222:22"
         links:
             - db:mysql
-            - memcached:memcached
             - redis:redis
         environment:
             - DOCUMENT_ROOT=/var/www/html
             - ENVIRONMENT=Development
-            - PLATFORM=Magento
-            - PHP_VERSION=5.6
-            - APACHE_VERSION=2
-            - REPO_LINK=none
         restart: always
     db:
         build:
@@ -41,11 +41,9 @@ services:
             - MYSQL_USER=admin
             - MYSQL_PASSWORD=admin
         restart: always
-    memcached:
-        image: memcached
-        ports:
-            - "11211:11211"
     redis:
         image: redis
         ports:
-            - "6379:6379"
+            - 6379:6379
+volumes:
+  web-data-volume:

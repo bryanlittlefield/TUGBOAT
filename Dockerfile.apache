@@ -1,17 +1,28 @@
 FROM php:7.0-apache
 
 # ============================
-# FIX PERMISSIONS / ADD DEV USER
+# SETUP BUILD ARGS
 # ============================
+ARG PHP_VERSION
+ARG ROOT_USER_PASS
+ARG DEV_USER_PASS
+
+# ===============================================
+# FIX PERMISSIONS / ADD DEV USER / SET PASSWORDS
+# ================================================
 RUN usermod -u 1000 www-data
 RUN groupmod -g 1000 www-data
-RUN useradd -p dev -ms /bin/bash dev
+RUN useradd -p dev -ms /bin/bash -d /var/www/html dev
+RUN usermod -aG www-data dev
+RUN usermod -aG dev www-data
+RUN chown -R dev:dev /var/www/html
+RUN echo "dev:$DEV_USER_PASS" | chpasswd
+RUN echo "root:$ROOT_USER_PASS" | chpasswd
 
 # ============================
 # ADD APT SOURCES
 # ============================
 # RUN echo "deb http://ftp.debian.org/debian jessie-backports main" | tee -a /etc/apt/sources.list
-
 
 # ============================
 # UPDATE/UPGRADE APT PACKAGES
@@ -19,11 +30,9 @@ RUN useradd -p dev -ms /bin/bash dev
 RUN apt-get update
 RUN apt-get upgrade -y
 
-
 # ============================
 # UPDATE/UPGRADE APT PACKAGES
 # ============================
-
 RUN apt-get install -y \
     build-essential \
     libfreetype6-dev \
@@ -36,13 +45,11 @@ RUN apt-get install -y \
     libxml2-dev \
 	libxslt-dev
 
-RUN apt-get install -y git vim cron htop zip unzip pwgen curl wget chkconfig ruby rubygems ruby-dev screen openssl
-
+RUN apt-get install -y git vim cron htop zip unzip pwgen curl wget chkconfig ruby rubygems ruby-dev screen openssl openssh-server
 
 # ============================
 # CONFIG PHP EXTENSIONS
 # ============================
-
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install iconv
@@ -59,20 +66,19 @@ RUN docker-php-ext-install intl
 RUN docker-php-ext-install xsl
 RUN docker-php-ext-configure bcmath
 RUN docker-php-ext-install bcmath
+RUN pecl install redis-3.1.0 \
+    && docker-php-ext-enable redis
 
 # ============================
 # Setup Composer
 # ============================
-
 RUN php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');"
 RUN php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('/tmp/composer-setup.php'); } echo PHP_EOL;"
 RUN php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
-
 # ============================
 # Setup/Configure Node.js
 # ============================
-
 ADD etc/node/package.json /var/www/html/
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 RUN apt-get install -y nodejs
@@ -89,7 +95,6 @@ RUN npm install connect-browser-sync --save
 # ============================
 # Setup Mailcatcher
 # ============================
-
 RUN gem update --system
 RUN gem install mailcatcher
 RUN mailcatcher -i 0.0.0.0
@@ -97,7 +102,6 @@ RUN mailcatcher -i 0.0.0.0
 # ============================
 # Create SSL Cert
 # ============================
-
 RUN mkdir /etc/apache2/ssl
 
 RUN openssl genrsa -des3 -passout pass:x -out server.pass.key 2048
@@ -111,7 +115,6 @@ RUN chmod 600 /etc/apache2/ssl/*
 # ============================
 # Configure Apache/PHP
 # ============================
-
 RUN rm /etc/apache2/sites-enabled/*
 ADD etc/apache2/vhost.conf /etc/apache2/sites-available/default.conf
 ADD etc/apache2/vhost-ssl.conf /etc/apache2/sites-available/default-ssl.conf
@@ -126,8 +129,15 @@ RUN a2enmod expires
 # ============================
 # Enable Sites
 # ============================
-
 RUN a2ensite default-ssl
 RUN a2ensite default
+
+# ============================
+# CONFIG OPENSSH / START SERVICE
+# ============================
+COPY etc/ssh/sshd_config /etc/ssh/sshd_config
+RUN service ssh start
+CMD /usr/sbin/sshd -D -e
+
 
 #RUN service apache2 reload
