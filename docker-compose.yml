@@ -5,22 +5,26 @@ services:
             context: .
             dockerfile: Dockerfile.apache
             args:
-                PHP_VERSION: "7"
+                - ROOT_USER_PASS=root
+                - DEV_USER_PASS=dev
         volumes:
             - ./var/log/apache2:/var/log/apache2
+            # Example of a Host Mounted Volume
             - ./var/www/html:/var/www/html
+            # Example of a Named Data Volume
+            #- web-data-volume:/var/www/html
         ports:
-            - 80:80
-            - 443:443
-            - 1080:1080
-            - 1025:1025
+            - "80:80"
+            - "443:443"
+            - "1080:1080"
+            - "1025:1025"
+            - "2222:22"
         links:
             - db:mysql
             - redis:redis
         environment:
             - DOCUMENT_ROOT=/var/www/html
             - ENVIRONMENT=Development
-            - REPO_LINK=none
         restart: always
     db:
         build:
@@ -40,4 +44,6 @@ services:
     redis:
         image: redis
         ports:
-            - "6379:6379"
+            - 6379:6379
+volumes:
+  web-data-volume:
