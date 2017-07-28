@@ -17,11 +17,11 @@ services:
             - "80:80"
             - "443:443"
             - "1080:1080"
-            - "1025:1025"
             - "2222:22"
         links:
             - db:mysql
             - redis:redis
+            - mailhog:mailhog
         environment:
             - DOCUMENT_ROOT=/var/www/html
             - ENVIRONMENT=Development
@@ -45,5 +45,10 @@ services:
         image: redis
         ports:
             - 6379:6379
+    mailhog:
+        image: mailhog/mailhog
+        ports:
+            - "8025:8025"
+            - "1025:1025"
 volumes:
   web-data-volume:
