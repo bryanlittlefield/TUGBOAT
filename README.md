@@ -121,6 +121,15 @@ If using default settings the login to SequelPro is the following:
 
 - - - -
 
+## Access to Mailhog
+Access the GUI for checking the emails that are being caught by Mailhog:
+
+- **URL:** `127.0.0.1:1025`
+
+- - - -
+
+
+
 ## Magento Database Connection Example:
 
 ```
