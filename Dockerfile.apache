@@ -1,4 +1,4 @@
-FROM php:7.0-apache
+FROM php:5.6-apache
 
 # ============================
 # SETUP BUILD ARGS
@@ -92,12 +92,6 @@ RUN npm install -g bower --save
 RUN npm install browser-sync --save
 RUN npm install connect-browser-sync --save
 
-# ============================
-# Setup Mailcatcher
-# ============================
-RUN gem update --system
-RUN gem install mailcatcher
-RUN mailcatcher -i 0.0.0.0
 
 # ============================
 # Create SSL Cert
