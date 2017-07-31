@@ -9,6 +9,7 @@
 ##  Quick Start:
 - Install [Docker](https://docs.docker.com/engine/installation/)
 - Clone TUGBOAT into an empty directory using : `git clone https://github.com/bryanjlittlefield/TUGBOAT .`
+- Using a terminal navigate to the directory you put TUGBOAT in and run `docker-compose up`
 - Visit `127.0.0.1`
 > More advanced access and configurations below.
 
