@@ -1,4 +1,12 @@
-FROM mysql
+# ============================
+# SETUP BUILD ARGS
+# ============================
+ARG MYSQL_VERSION
+
+# ============================
+# PULL OFFICIAL PHP REPO
+# ============================
+FROM mysql:${MYSQL_VERSION}
 
 # Fix permissions
 RUN usermod -u 1000 mysql

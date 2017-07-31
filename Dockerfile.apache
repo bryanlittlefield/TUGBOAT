@@ -1,9 +1,12 @@
-FROM php:5.6-apache
+# ============================
+# PULL OFFICIAL PHP REPO
+# ============================
+ARG PHP_VERSION
+FROM php:${PHP_VERSION}-apache
 
 # ============================
 # SETUP BUILD ARGS
 # ============================
-ARG PHP_VERSION
 ARG ROOT_USER_PASS
 ARG DEV_USER_PASS
 

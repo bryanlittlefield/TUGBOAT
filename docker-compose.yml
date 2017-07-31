@@ -7,6 +7,8 @@ services:
             args:
                 - ROOT_USER_PASS=root
                 - DEV_USER_PASS=dev
+                - PHP_VERSION=7.1.0
+                #- PHP_VERSION=5.6
         volumes:
             - ./var/log/apache2:/var/log/apache2
             # Example of a Host Mounted Volume
@@ -25,11 +27,13 @@ services:
         environment:
             - DOCUMENT_ROOT=/var/www/html
             - ENVIRONMENT=Development
-        restart: always
+        restart: on-failure
     db:
         build:
             context: .
             dockerfile: Dockerfile.mysql
+            args:
+                - MYSQL_VERSION=5.7
         volumes:
             - ./var/lib/mysql:/var/lib/mysql
         ports:
@@ -40,7 +44,7 @@ services:
             - MYSQL_DATABASE=dev
             - MYSQL_USER=admin
             - MYSQL_PASSWORD=admin
-        restart: always
+        restart: on-failure
     redis:
         image: redis
         ports:
