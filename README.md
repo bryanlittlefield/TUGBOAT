@@ -5,6 +5,13 @@
 > Built on top of the official Docker repositories for php and MySQL, these preconfigured containers should have everything you need for your next php website or application. If the project requires further configuration, TUGBOAT can be extended to provided access to additional packages and configurations to the environment.  
 
 - - - -
+
+##  Quick Start:
+- Install [Docker](https://docs.docker.com/engine/installation/)
+- Clone TUGBOAT into an empty directory using : `git clone https://github.com/bryanjlittlefield/TUGBOAT .`
+- Visit `127.0.0.1`
+> More advanced access and configurations below.
+
 ##  Built in Server Configurations include:
 
 ### Environment Setup:
