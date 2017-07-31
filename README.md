@@ -167,7 +167,7 @@ define( 'DB_HOST', 'my_container_name_1' ); -OR- define( 'DB_HOST', 'mysql' );
 
 ## Mailcatcher
 Run: `mailcatcher --http-ip=0.0.0.0`  to turn on mailcatcher (on by default)
-Then visit: http://127.0.0.1:1080
+Then visit: http://127.0.0.1:8025
 
 - - - -
 
