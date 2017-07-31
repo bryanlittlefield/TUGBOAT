@@ -47,6 +47,7 @@ services:
             - 6379:6379
     mailhog:
         image: mailhog/mailhog
+        hostname: mailhog
         ports:
             - "8025:8025"
             - "1025:1025"
