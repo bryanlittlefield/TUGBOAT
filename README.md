@@ -8,9 +8,10 @@
 
 ##  Quick Start:
 - Install [Docker](https://docs.docker.com/engine/installation/)
-- Clone TUGBOAT into an empty directory using : `git clone https://github.com/bryanjlittlefield/TUGBOAT .`
-- Using a terminal navigate to the directory you put TUGBOAT in and run `docker-compose up`
-- Visit `127.0.0.1` | The web root is located locally in `/var/www/html` of your directory by default. This will sync into your virtual environment
+- Clone [**TUGBOAT**](https://github.com/bryanlittlefield/TUGBOAT) into an empty directory using : `git clone https://github.com/bryanjlittlefield/TUGBOAT .`
+- Using a terminal, navigate to the directory you cloned TUGBOAT into and run `docker-compose up`
+- Visit `127.0.0.1` | The web root is located locally in `/var/www/html` of your TUGBOAT directory by default. This will sync into your virtual environment
+- Happy Coding!
 > More advanced access and configurations below.
 
 ##  Built in Server Configurations include:
