@@ -2,7 +2,7 @@
 
 # Welcome to TUGBOAT
 
-> Built on top of the official Docker repositories for php and MySQL, these preconfigured containers should have everything you need for your next php website or application. If the project requires further configuration, TUGBOAT can be extended to provided access to additional packages and configurations to the environment.  
+> Built on top of the official Docker repositories for php and MySQL, these preconfigured containers should have everything you need to start your next php website or application. If the project requires further configuration dont sweat it, TUGBOAT can be extended to provided access to additional packages and configurations to the environment.  
 
 - - - -
 
