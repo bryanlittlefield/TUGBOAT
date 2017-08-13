@@ -1,12 +1,7 @@
 # ============================
-# SETUP BUILD ARGS
+# PULL OFFICIAL MYSQL REPO
 # ============================
-ARG MYSQL_VERSION=5.7
-
-# ============================
-# PULL OFFICIAL PHP REPO
-# ============================
-FROM mysql:${MYSQL_VERSION}
+FROM mysql:5.7
 
 # Fix permissions
 RUN usermod -u 1000 mysql
