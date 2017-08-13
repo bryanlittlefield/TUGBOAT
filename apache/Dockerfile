@@ -6,8 +6,8 @@ FROM php:7.0-apache
 # ============================
 # SETUP BUILD ARGS
 # ============================
-ENV ROOT_USER_PASS 
-ENV DEV_USER_PASS
+ENV ROOT_USER_PASS root
+ENV DEV_USER_PASS admin
 
 # ===============================================
 # FIX PERMISSIONS / ADD DEV USER / SET PASSWORDS
