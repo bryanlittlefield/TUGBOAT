@@ -3,16 +3,16 @@ services:
     web:
         build:
             context: .
-            dockerfile: Dockerfile.apache
+            dockerfile: ./apache/Dockerfile.apache
             args:
                 - ROOT_USER_PASS=root
                 - DEV_USER_PASS=dev
                 - PHP_VERSION=7.1.0
                 #- PHP_VERSION=5.6
         volumes:
-            - ./var/log/apache2:/var/log/apache2
+            - ./apache/var/log/apache2:/var/log/apache2
             # Example of a Host Mounted Volume
-            - ./var/www/html:/var/www/html
+            - ./apache/var/www/html:/var/www/html
             # Example of a Named Data Volume
             #- web-data-volume:/var/www/html
         ports:
@@ -35,7 +35,7 @@ services:
             args:
                 - MYSQL_VERSION=5.7
         volumes:
-            - ./var/lib/mysql:/var/lib/mysql
+            - ./mysql/var/lib/mysql:/var/lib/mysql
         ports:
             - 3306:3306
         environment:

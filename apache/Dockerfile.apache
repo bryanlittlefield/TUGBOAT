@@ -147,3 +147,5 @@ RUN service ssh start
 # ============================
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install golang-go
 RUN mkdir /opt/go && export GOPATH=/opt/go && go get github.com/mailhog/mhsendmail
+
+CMD ["apache2-foreground"]
