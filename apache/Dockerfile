@@ -1,8 +1,7 @@
 # ============================
 # PULL OFFICIAL PHP REPO
 # ============================
-ENV PHP_VERSION=7.0
-FROM php:${PHP_VERSION}-apache
+FROM php:7.0-apache
 
 # ============================
 # SETUP BUILD ARGS
