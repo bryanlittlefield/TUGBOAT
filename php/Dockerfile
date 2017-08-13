@@ -85,22 +85,6 @@ RUN php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php')
 RUN php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('/tmp/composer-setup.php'); } echo PHP_EOL;"
 RUN php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
-# ============================
-# Setup/Configure Node.js
-# ============================
-ADD etc/node/package.json /var/www/html/
-RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
-RUN apt-get install -y nodejs
-RUN npm update
-RUN npm init -y
-
-
-RUN npm install gulp-cli -g --save
-RUN npm install gulp -D --save
-RUN npm install -g bower --save
-RUN npm install browser-sync --save
-RUN npm install connect-browser-sync --save
-
 
 # ============================
 # Create SSL Cert
@@ -119,9 +103,9 @@ RUN chmod 600 /etc/apache2/ssl/*
 # Configure Apache/PHP
 # ============================
 RUN rm /etc/apache2/sites-enabled/*
-ADD etc/apache2/vhost.conf /etc/apache2/sites-available/default.conf
-ADD etc/apache2/vhost-ssl.conf /etc/apache2/sites-available/default-ssl.conf
-ADD etc/php/php.ini /usr/local/etc/php/
+ADD ./config/apache2/vhost.conf /etc/apache2/sites-available/default.conf
+ADD ./config/apache2/vhost-ssl.conf /etc/apache2/sites-available/default-ssl.conf
+ADD ./config/php/php.ini /usr/local/etc/php/
 
 RUN a2enmod rewrite
 RUN a2enmod ssl
@@ -138,7 +122,7 @@ RUN a2ensite default
 # ============================
 # CONFIG OPENSSH / START SERVICE
 # ============================
-COPY etc/ssh/sshd_config /etc/ssh/sshd_config
+COPY ./config/ssh/sshd_config /etc/ssh/sshd_config
 RUN service ssh start
 
 # ============================
