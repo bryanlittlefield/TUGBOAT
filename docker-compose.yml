@@ -7,7 +7,7 @@ services:
             args:
                 - ROOT_USER_PASS=root
                 - DEV_USER_PASS=dev
-                - PHP_VERSION=7.1.0
+                - PHP_VERSION=7.0
                 #- PHP_VERSION=5.6
         volumes:
             - ./apache/var/log/apache2:/var/log/apache2

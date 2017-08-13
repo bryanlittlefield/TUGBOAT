@@ -1,7 +1,7 @@
 # ============================
 # SETUP BUILD ARGS
 # ============================
-ARG MYSQL_VERSION
+ARG MYSQL_VERSION=5.7
 
 # ============================
 # PULL OFFICIAL PHP REPO
