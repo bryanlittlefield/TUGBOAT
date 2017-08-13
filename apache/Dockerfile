@@ -1,7 +1,7 @@
 # ============================
 # PULL OFFICIAL PHP REPO
 # ============================
-ARG PHP_VERSION=7.0
+ENV PHP_VERSION=7.0
 FROM php:${PHP_VERSION}-apache
 
 # ============================
