@@ -18,8 +18,8 @@ services:
             - redis:redis
             - mailhog:mailhog
         environment:
-            - DOCUMENT_ROOT=/var/www/html
-            - ENVIRONMENT=Development
+            - ROOT_USER_PASS=root
+            - DEV_USER_PASS=admin
         restart: on-failure
     db:
         image: bryanjlittlefield/tugboat-mysql:latest
