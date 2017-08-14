@@ -14,79 +14,6 @@
 - Happy Coding!:beers:
 > More advanced access and configurations below.
 
-##  Built in Server Configurations include:
-
-### Default Environment Setup:
-
-* **Server Packages**
-```
-Debian 8.0 (jessie)
-PHP 7
-Ruby 2.1.x
-redis
-Vim
-wget
-cURL
-pwgen
-Zip
-HTOP
-Cron
-Git
-GD and Imagick
-Composer
-Beanstalkd
-Node
-NPM
-Mcrypt
-```
-**and more! Just run: `apt list --installed` in the container to get the full list**
-
-* **PHP Extensions**
-```
-Core
-ctype
-curl
-date
-dom
-ereg
-fileinfo
-filter
-ftp
-gd
-hash
-iconv
-json
-libxml
-mbstring
-mcrypt
-mysqli
-mysqlnd
-openssl
-pcre
-PDO
-pdo_mysql
-pdo_pgsql
-pdo_sqlite
-pgsql
-Phar
-posix
-readline
-redis
-Reflection
-session
-SimpleXML
-soap
-SPL
-sqlite3
-standard
-tokenizer
-xml
-xmlreader
-xmlwriter
-zip
-zlib
-```
-
 - - - -
 
 ## Changing MySQL and PHP Versions for your Environment
@@ -228,6 +155,82 @@ docker images --filter dangling=true
 ```
 docker rmi -f $(docker images --filter dangling=true -q)
 ```
+
+- - - -
+##  Built in Server Configurations include:
+
+### Default Environment Setup:
+
+* **Server Packages**
+```
+Debian 8.0 (jessie)
+PHP 7
+Ruby 2.1.x
+redis
+Vim
+wget
+cURL
+pwgen
+Zip
+HTOP
+Cron
+Git
+GD and Imagick
+Composer
+Beanstalkd
+Node
+NPM
+Mcrypt
+```
+**and more! Just run: `apt list --installed` in the container to get the full list**
+
+* **PHP Extensions**
+```
+Core
+ctype
+curl
+date
+dom
+ereg
+fileinfo
+filter
+ftp
+gd
+hash
+iconv
+json
+libxml
+mbstring
+mcrypt
+mysqli
+mysqlnd
+openssl
+pcre
+PDO
+pdo_mysql
+pdo_pgsql
+pdo_sqlite
+pgsql
+Phar
+posix
+readline
+redis
+Reflection
+session
+SimpleXML
+soap
+SPL
+sqlite3
+standard
+tokenizer
+xml
+xmlreader
+xmlwriter
+zip
+zlib
+```
+- - - -
+
 
 ### DOCKER CONTAINERS
 - - - -
