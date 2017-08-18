@@ -141,6 +141,7 @@ RUN a2ensite default
 # ============================
 COPY etc/ssh/sshd_config /etc/ssh/sshd_config
 RUN service ssh start
+CMD service ssh start && while true; do sleep 3000; done
 
 # ============================
 # MHSendmail CONFIG
