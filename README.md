@@ -8,15 +8,158 @@
 
 ##  Quick Start:
 - Install [Docker](https://docs.docker.com/engine/installation/)
-- Clone [**TUGBOAT**](https://github.com/bryanlittlefield/TUGBOAT) into an empty directory using : `git clone https://github.com/bryanjlittlefield/TUGBOAT .`
+- Clone [**TUGBOAT**](https://github.com/bryanlittlefield/TUGBOAT) into an empty directory using : `git clone https://github.com/bryanlittlefield/TUGBOAT .`
 - Using a terminal, navigate to the directory you cloned TUGBOAT into and run `docker-compose up`
 - Visit `127.0.0.1` | The web root is located locally in `/var/www/html` of your TUGBOAT directory by default. This will sync into your virtual environment
 - Happy Coding!:beers:
 > More advanced access and configurations below.
 
+- - - -
+
+## Changing MySQL and PHP Versions for your Environment
+Within the `docker-compose.yml` file you can update which version of the image to pull by specifying version in replace of latest (see below)
+
+```
+web:
+    image: bryanjlittlefield/tugboat-php:5.6
+    volumes:
+        - ./var/log/apache2:/var/log/apache2
+        # Example of a Host Mounted Volume
+        - ./var/www/html:/var/www/html
+```        
+
+```
+db:
+    image: bryanjlittlefield/tugboat-mysql:5.6
+    volumes:
+        - ./var/lib/mysql:/var/lib/mysql
+```
+
+> Currently TUGBOAT supports MySQL 5.5, 5.6, 5.7 and PHP Versions 5.6, 7.0, 7.1
+
+- - - -
+
+## SSH Logins
+- **root**: `docker exec -i -t [container-name] bash`
+- **dev**: `docker exec -i -t  -u dev [container-name] bash`
+
+- - - -
+
+## Login to Web Container Using SFTP Client
+If using default settings the login for SFTP is the following:
+
+> - **host:** `127.0.0.1`
+> - **port:** `2222`
+> - **user:** `root`
+> - **passsword:** `root`
+
+> - **host:** `127.0.0.1`
+> - **port:** `2222`
+> - **user:** `dev`
+> - **passsword:** `dev`
+
+> **!NOTE!** If you are having any issues logging in first confirm your hostkey by directly running ssh from a terminal `ssh -p2222 dev@127.0.0.1`. If that still doesnt not work log directly into the container and stap and stop ssh `service ssh restart`
+
+- - - -
+
+## Login to DB Using Sequel Pro
+If using default settings the login to SequelPro is the following:
+
+- **host:** `127.0.0.1`
+- **user:** `admin`
+- **passsword:** `admin`
+
+- - - -
+
+## Access to Mailhog
+Access the GUI for checking the emails that are being caught by Mailhog:
+
+- **URL:** `127.0.0.1:1025`
+
+- - - -
+
+
+## Magento Database Connection Example:
+
+```
+<connection>
+   <host><![CDATA[my_container_name_1]]></host> -OR-  <host><![CDATA[mysql]]></host>
+   <username><![CDATA[admin]]></username>
+   <password><![CDATA[admin]]></password>
+   <dbname><![CDATA[dev]]></dbname>
+   <active>1</active>
+</connection>
+```
+> **!MAGENTO NOTE!** It is HIGHLY recomended that if you are running Magento that you DO NOT mount your Magento root volume  due to Magento's large codebase. Instead run them inside of the web container. To remove the mounted /var/www/html volume go to the `docker-compose.yml` file and delete the line under volumes that looks like: `./var/www/html:/var/www/html`
+
+> *See Github Issue: https://github.com/magento/magento2/issues/7859 - Hopefully this gets fixed soon!*
+
+- - - -
+
+## Wordpress Database Connection Example:
+
+```
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define( 'DB_NAME', 'dev' );
+
+/** MySQL database username */
+define( 'DB_USER', 'admin' );
+
+/** MySQL database password */
+define( 'DB_PASSWORD', 'admin' );
+
+/** MySQL hostname */
+define( 'DB_HOST', 'my_container_name_1' ); -OR- define( 'DB_HOST', 'mysql' );
+```
+
+
+## Useful Commands
+
+- List Running Services: `docker exec -i -t [web-container-name] chkconfig`
+- Check Groups: `docker exec -i -t [web-container-name] groups`
+- List Installed PHP Extensions : `docker exec -i -t [web-container-name] php –me`
+
+- - - -
+
+## Using Docker (ADVANCED):
+
+
+### DOCKER IMAGES
+- - - -
+
+**List Images**
+```
+docker images
+```
+
+**Remove Image**
+```
+docker rmi [image_name]
+```
+
+**Remove ALL Images**
+
+```
+docker rmi $(docker images -q)
+```
+
+**View Orphaned Images (un-tagged)**
+
+```
+docker images --filter dangling=true
+```
+
+**Remove Orphaned Images (un-tagged)**
+
+```
+docker rmi -f $(docker images --filter dangling=true -q)
+```
+
+- - - -
 ##  Built in Server Configurations include:
 
-### Environment Setup:
+### Default Environment Setup:
 
 * **Server Packages**
 ```
@@ -86,134 +229,8 @@ xmlwriter
 zip
 zlib
 ```
-
-* **Node**
-```
-Grunt
-Bower
-Gulp
-Browsersync
-```
-
-
 - - - -
 
-## SSH Logins
-- **root**: `docker exec -i -t [container-name] bash`
-- **dev**: `docker exec -i -t  -u dev [container-name] bash`
-
-- - - -
-
-## Login to Web Container Using SFTP Client
-If using default settings the login for SFTP is the following:
-
-> - **host:** `127.0.0.1`
-> - **port:** `2222`
-> - **user:** `root`
-> - **passsword:** `root`
-
-> - **host:** `127.0.0.1`
-> - **port:** `2222`
-> - **user:** `dev`
-> - **passsword:** `dev`
-
-> **!NOTE!** If you are having any issues logging in first confirm your hostkey by directly running ssh from a terminal `ssh -p2222 dev@127.0.0.1`. If that still doesnt not work log directly into the container and stap and stop ssh `service ssh restart` 
-
-- - - -
-
-## Login to DB Using Sequel Pro
-If using default settings the login to SequelPro is the following:
-
-- **host:** `127.0.0.1`
-- **user:** `admin`
-- **passsword:** `admin`
-
-- - - -
-
-## Access to Mailhog
-Access the GUI for checking the emails that are being caught by Mailhog:
-
-- **URL:** `127.0.0.1:1025`
-
-- - - -
-
-
-## Magento Database Connection Example:
-
-```
-<connection>
-   <host><![CDATA[my_container_name_1]]></host> -OR-  <host><![CDATA[mysql]]></host>
-   <username><![CDATA[admin]]></username>
-   <password><![CDATA[admin]]></password>
-   <dbname><![CDATA[dev]]></dbname>
-   <active>1</active>
-</connection>
-```
-> **!MAGENTO NOTE!** It is HIGHLY recomended that if you are running Magento that you DO NOT mount your Magento root volume  due to Magento's large codebase. Instead run them inside of the web container. To remove the mounted /var/www/html volume go to the `docker-compose.yml` file and delete the line under volumes that looks like: `./var/www/html:/var/www/html` 
-
-> *See Github Issue: https://github.com/magento/magento2/issues/7859 - Hopefully this gets fixed soon!*
-
-- - - -
-
-## Wordpress Database Connection Example:
-
-```
-// ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-define( 'DB_NAME', 'dev' );
-
-/** MySQL database username */
-define( 'DB_USER', 'admin' );
-
-/** MySQL database password */
-define( 'DB_PASSWORD', 'admin' );
-
-/** MySQL hostname */
-define( 'DB_HOST', 'my_container_name_1' ); -OR- define( 'DB_HOST', 'mysql' );
-```
-
-
-## Useful Commands
-
-- List Running Services: `docker exec -i -t [web-container-name] chkconfig`
-- Check Groups: `docker exec -i -t [web-container-name] groups`
-- List Installed PHP Extensions : `docker exec -i -t [web-container-name] php –me`
-
-- - - -
-
-## Using Docker (ADVANCED):
-
-
-### DOCKER IMAGES
-- - - -
-
-**List Cached Images**
-```
-docker images
-```
-
-**Remove Cached Image**
-```
-docker rmi [image_name]
-```
-
-**Remove ALL Cached Images**
-
-```
-docker rmi $(docker images -q)
-```
-
-**View Orphaned Images (un-tagged)**
-
-```
-docker images --filter dangling=true
-```
-
-**Remove Orphaned Images (un-tagged)**
-
-```
-docker rmi -f $(docker images --filter dangling=true -q)
-```
 
 ### DOCKER CONTAINERS
 - - - -
@@ -224,29 +241,33 @@ docker rmi -f $(docker images --filter dangling=true -q)
 ```
 docker run [container]
 -d = run in background
--v = set volume sync ~/your/drive/path:/var/www/html 
--p 80:80 open ports 
+-v = set volume sync ~/your/drive/path:/var/www/html
+-p 80:80 open ports
 ```
 
-**Remove/Delete Local Containers** 
+**Remove/Delete Local Containers**
 
 ```
 docker rm [container_id]
 ```
 
-**Remove/Delete ALL containers**
+**Remove/Delete ALL Containers**
 
 ```
 docker rm $(docker ps -a -q)
 ```
 
+**Delete all stopped containers**
+```
+docker rm $( docker ps -q -f status=exited)
+```
 
-**Stop Local Container** 
+**Stop Local Container**
 ```
 docker stop [container_id]
 ```
 
-**Stop ALL Local Containers** 
+**Stop ALL Local Containers**
 ```
 docker stop $(docker ps -a -q)
 ```
@@ -379,4 +400,3 @@ db:
 [https://blog.codeship.com/ensuring-containers-are-always-running-with-dockers-restart-policy/](https://blog.codeship.com/ensuring-containers-are-always-running-with-dockers-restart-policy/)
 
 [https://blog.codeship.com/continuous-integration-and-delivery-with-docker/](https://blog.codeship.com/continuous-integration-and-delivery-with-docker/)
-

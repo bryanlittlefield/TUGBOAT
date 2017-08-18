@@ -1,14 +1,7 @@
 version: "3"
 services:
     web:
-        build:
-            context: .
-            dockerfile: Dockerfile.apache
-            args:
-                - ROOT_USER_PASS=root
-                - DEV_USER_PASS=dev
-                - PHP_VERSION=7.1.0
-                #- PHP_VERSION=5.6
+        image: bryanjlittlefield/tugboat-php:latest
         volumes:
             - ./var/log/apache2:/var/log/apache2
             # Example of a Host Mounted Volume
@@ -25,15 +18,11 @@ services:
             - redis:redis
             - mailhog:mailhog
         environment:
-            - DOCUMENT_ROOT=/var/www/html
-            - ENVIRONMENT=Development
+            - ROOT_USER_PASS=root
+            - DEV_USER_PASS=admin
         restart: on-failure
     db:
-        build:
-            context: .
-            dockerfile: Dockerfile.mysql
-            args:
-                - MYSQL_VERSION=5.7
+        image: bryanjlittlefield/tugboat-mysql:latest
         volumes:
             - ./var/lib/mysql:/var/lib/mysql
         ports:
