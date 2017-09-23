@@ -37,6 +37,29 @@ db:
 
 > Currently TUGBOAT supports MySQL 5.5, 5.6, 5.7 and PHP Versions 5.6, 7.0, 7.1
 
+
+- - - -
+
+## GitHub Configuration
+TUGBOAT's docker-compose file utlizies the following ENV variables to auto download our pull latest repos into your web root so that you can be up and running on your project upon the initialization of your environment.
+
+Include the following ENV variables in your docker-compose.yml file (A full example will be shown below)
+
+- **GITHUB_USER**: `Username for Github`
+- **GITHUB_REPO_URL**: `Name of the Repository`
+- **GITHUB_USER_PASS**: `If Private Repo ONLY provide a password for Authentication`
+
+#### Example docker-compose.yml file:
+
+```
+        environment:
+            - ROOT_USER_PASS=root
+            - DEV_USER_PASS=admin
+            - GITHUB_USER=bryanlittlefield
+            - GITHUB_USER_PASS=mypass123
+            - GITHUB_REPO_URL=TUGBOAT
+```
+
 - - - -
 
 ## SSH Logins
