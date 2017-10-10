@@ -1,6 +1,8 @@
 version: "3"
 services:
     web:
+        env_file:
+            - variables.env
         image: bryanjlittlefield/tugboat-php:latest
         volumes:
             - ./var/log/apache2:/var/log/apache2
@@ -17,22 +19,15 @@ services:
             - db:mysql
             - redis:redis
             - mailhog:mailhog
-        environment:
-            - ROOT_USER_PASS=root
-            - DEV_USER_PASS=admin
         restart: on-failure
     db:
+        env_file:
+            - variables.env
         image: bryanjlittlefield/tugboat-mysql:latest
         volumes:
             - ./var/lib/mysql:/var/lib/mysql
         ports:
             - 3306:3306
-        environment:
-            # - MYSQL_ROOT_PASSWORD
-            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-            - MYSQL_DATABASE=dev
-            - MYSQL_USER=admin
-            - MYSQL_PASSWORD=admin
         restart: on-failure
     redis:
         image: redis
