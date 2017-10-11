@@ -21,6 +21,8 @@ services:
             - mailhog:mailhog
         restart: on-failure
     db:
+        env_file:
+            - .env      
         image: bryanjlittlefield/tugboat-mysql:${MYSQL_VERSION}
         volumes:
             - ./var/lib/mysql:/var/lib/mysql
