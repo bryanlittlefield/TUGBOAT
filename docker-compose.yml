@@ -1,7 +1,9 @@
 version: "3"
 services:
     web:
-        image: bryanjlittlefield/tugboat-php:latest
+        env_file:
+            - .env
+        image: bryanjlittlefield/tugboat-php:${PHP_VERSION}
         volumes:
             - ./var/log/apache2:/var/log/apache2
             # Example of a Host Mounted Volume
@@ -17,22 +19,15 @@ services:
             - db:mysql
             - redis:redis
             - mailhog:mailhog
-        environment:
-            - ROOT_USER_PASS=root
-            - DEV_USER_PASS=admin
         restart: on-failure
     db:
-        image: bryanjlittlefield/tugboat-mysql:latest
+        env_file:
+            - .env      
+        image: bryanjlittlefield/tugboat-mysql:${MYSQL_VERSION}
         volumes:
             - ./var/lib/mysql:/var/lib/mysql
         ports:
             - 3306:3306
-        environment:
-            # - MYSQL_ROOT_PASSWORD
-            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-            - MYSQL_DATABASE=dev
-            - MYSQL_USER=admin
-            - MYSQL_PASSWORD=admin
         restart: on-failure
     redis:
         image: redis
