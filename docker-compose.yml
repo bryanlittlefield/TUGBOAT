@@ -2,8 +2,8 @@ version: "3"
 services:
     web:
         env_file:
-            - variables.env
-        image: bryanjlittlefield/tugboat-php:latest
+            - .env
+        image: bryanjlittlefield/tugboat-php:${PHP_VERSION}
         volumes:
             - ./var/log/apache2:/var/log/apache2
             # Example of a Host Mounted Volume
@@ -21,9 +21,7 @@ services:
             - mailhog:mailhog
         restart: on-failure
     db:
-        env_file:
-            - variables.env
-        image: bryanjlittlefield/tugboat-mysql:latest
+        image: bryanjlittlefield/tugboat-mysql:${MYSQL_VERSION}
         volumes:
             - ./var/lib/mysql:/var/lib/mysql
         ports:
