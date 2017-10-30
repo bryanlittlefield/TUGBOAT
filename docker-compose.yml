@@ -14,7 +14,7 @@ services:
             - "80:80"
             - "443:443"
             - "1080:1080"
-            - "2222:22"
+            #- "2222:22"
         links:
             - db:mysql
             - redis:redis
@@ -22,7 +22,7 @@ services:
         restart: on-failure
     db:
         env_file:
-            - .env      
+            - .env
         image: bryanjlittlefield/tugboat-mysql:${MYSQL_VERSION}
         volumes:
             - ./var/lib/mysql:/var/lib/mysql
