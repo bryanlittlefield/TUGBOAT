@@ -4,6 +4,7 @@ services:
         env_file:
             - .env
         image: bryanjlittlefield/tugboat-php:${PHP_VERSION}
+        container_name: ${PROJECT_NAME}_web
         volumes:
             - ./var/log/apache2:/var/log/apache2
             # Example of a Host Mounted Volume
@@ -24,6 +25,7 @@ services:
         env_file:
             - .env
         image: bryanjlittlefield/tugboat-mysql:${MYSQL_VERSION}
+        container_name: ${PROJECT_NAME}_db
         volumes:
             - ./var/lib/mysql:/var/lib/mysql
         ports:
@@ -31,10 +33,12 @@ services:
         restart: on-failure
     redis:
         image: redis
+        container_name: ${PROJECT_NAME}_redis
         ports:
             - 6379:6379
     mailhog:
         image: mailhog/mailhog
+        container_name: ${PROJECT_NAME}_mailhog
         hostname: mailhog
         ports:
             - "8025:8025"
