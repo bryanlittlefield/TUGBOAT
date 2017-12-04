@@ -6,6 +6,9 @@ services:
         image: bryanjlittlefield/tugboat-php:${PHP_VERSION}
         container_name: ${PROJECT_NAME}_web
         volumes:
+            # Mount Files to Container on build
+            - ./scripts/build-files:/usr/local/bin/build-files
+            # Mount Apaches Log Files on Host
             - ./var/log/apache2:/var/log/apache2
             # Example of a Host Mounted Volume
             - ./var/www/html:/var/www/html
