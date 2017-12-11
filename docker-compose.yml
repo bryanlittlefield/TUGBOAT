@@ -11,13 +11,15 @@ services:
             # Mount Apaches Log Files on Host
             - ./var/log/apache2:/var/log/apache2
             # Example of a Host Mounted Volume
-            - ./var/www/html:/var/www/html
+            - .${DOCUMENT_ROOT}:${DOCUMENT_ROOT}
             # Example of a Named Data Volume
             #- web-data-volume:/var/www/html
         ports:
             - "80:80"
             - "443:443"
             - "1080:1080"
+            - "3001:3001"
+            - "3000:3000"
             #- "2222:22"
         links:
             - db:mysql
@@ -30,15 +32,18 @@ services:
         image: bryanjlittlefield/tugboat-mysql:${MYSQL_VERSION}
         container_name: ${PROJECT_NAME}_db
         volumes:
+            # Mount MySQL Databases on Host
             - ./var/lib/mysql:/var/lib/mysql
+            # Mount MySQL Log Files on Host
+            - ./var/log/mysql:/var/log/mysql
         ports:
-            - 3306:3306
+            - "3306:3306"
         restart: on-failure
     redis:
         image: redis
         container_name: ${PROJECT_NAME}_redis
         ports:
-            - 6379:6379
+            - "6379:6379"
     mailhog:
         image: mailhog/mailhog
         container_name: ${PROJECT_NAME}_mailhog
