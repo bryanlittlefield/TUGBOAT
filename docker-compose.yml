@@ -12,6 +12,12 @@ services:
             - ./var/log/apache2:/var/log/apache2
             # Example of a Host Mounted Volume
             - .${DOCUMENT_ROOT}:${DOCUMENT_ROOT}
+            # Mount Apache Config Files on Host
+            - ./config/apache/:/etc/apache2/sites-available/
+            # Mount PHP configuration file
+            - ./config/php/php.ini:/usr/local/etc/php/php.ini
+            # Mount SSL configuration file
+            - ./config/ssh/sshd_config:/etc/ssh/sshd_config
             # Example of a Named Data Volume
             #- web-data-volume:/var/www/html
         ports:
@@ -33,10 +39,10 @@ services:
         image: bryanjlittlefield/tugboat-mysql:${MYSQL_VERSION}
         container_name: ${PROJECT_NAME}_db
         volumes:
-            # Mount MySQL Databases on Host
-            - ./var/lib/mysql:/var/lib/mysql
             # Mount MySQL Log Files on Host
             - ./var/log/mysql:/var/log/mysql
+            # Mount MySQL Config File on Host
+            - ./config/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
         ports:
             - "3306:3306"
         restart: on-failure
