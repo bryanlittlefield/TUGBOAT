@@ -39,6 +39,8 @@ services:
         image: bryanjlittlefield/tugboat-mysql:${MYSQL_VERSION}
         container_name: ${PROJECT_NAME}_db
         volumes:
+            # Mount MySQL Database Files on Host
+            - ./var/lib/mysql:/var/lib/mysql
             # Mount MySQL Log Files on Host
             - ./var/log/mysql:/var/log/mysql
             # Mount MySQL Config File on Host
