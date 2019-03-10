@@ -12,8 +12,6 @@ services:
             - ./var/log/apache2:/var/log/apache2
             # Example of a Host Mounted Volume
             - .${DOCUMENT_ROOT}:${DOCUMENT_ROOT}
-            # Mount Apache Config Files on Host
-            - ./config/apache/:/etc/apache2/sites-available/
             # Mount PHP configuration file
             - ./config/php/php.ini:/usr/local/etc/php/php.ini
             # Mount SSL configuration file
