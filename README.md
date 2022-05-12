@@ -2,15 +2,20 @@
 
 # Welcome to TUGBOAT
 
-> Built on top of the official Docker repositories for php and MySQL, these preconfigured containers should have everything you need to start your next php website or application. If the project requires further configuration dont sweat it, TUGBOAT can be extended to provided access to additional packages and configurations to the environment.  
+> Built on top of the official Docker repositories for php and MySQL, these preconfigured containers will jumpstart your php website or application development. If the environment requires further configurations dont sweat it, TUGBOAT can be extended to provided access to additional packages and configurations to the environment using [build scripts](https://github.com/bryanlittlefield/TUGBOAT/wiki/Running-Scripts-in-the-Web-Container-on-Build).  
 
 - - - -
 
 ##  Quick Start:
 - Install [Docker](https://docs.docker.com/engine/installation/)
-- Run Command: `git clone https://github.com/bryanlittlefield/TUGBOAT && cd TUGBOAT && docker-compose up -d && cd var/www/html`
-- Visit `127.0.0.1` or your Remote IP/FQDN `xxx.xx.xx.xxx` | The web root is located locally in `/var/www/html` of your TUGBOAT directory by default. This will sync into your virtual environment
+- Run Command: 
+  ```
+  git clone https://github.com/bryanlittlefield/TUGBOAT && cd TUGBOAT && docker-compose up -d && cd var/www/html
+  ```
+- Visit `127.0.0.1` or your Remote IP/FQDN `xxx.xx.xx.xxx`
+- The web root is mounted locally in `/var/www/html/`
 - Happy Coding!:beers:
+
 
 - - - -
 
