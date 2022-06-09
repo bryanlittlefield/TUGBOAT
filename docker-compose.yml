@@ -46,6 +46,15 @@ services:
         ports:
             - "3306:3306"
         restart: on-failure
+    mongodb:
+        image: mongo
+        container_name: ${PROJECT_NAME}_mongo
+        restart: on-failure
+        volumes:
+            - ./var/mongo:/data/db
+        ports:
+            - "27017:27017"
+        command: --storageEngine wiredTiger
     redis:
         image: redis
         container_name: ${PROJECT_NAME}_redis
@@ -58,5 +67,15 @@ services:
         ports:
             - "8025:8025"
             - "1025:1025"
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: ${PROJECT_NAME}_phpmyadmin
+        environment:
+         - PMA_ARBITRARY=1
+        restart: on-failure
+        ports:
+         - 8080:80
+        volumes:
+         - /sessions
 volumes:
   web-data-volume:
