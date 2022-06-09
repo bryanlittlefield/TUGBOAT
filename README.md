@@ -19,4 +19,28 @@
 
 - - - -
 
+##  Supported Versions:
+
+- **PHP**:
+  - 8.1
+  - 8.0 (`stable`)
+  - 7.4
+- **MySQL**:
+  - 8.1
+  - 8.0 (`stable`)
+  - 5.7
+
+###  No Longer Maintained:
+
+- **PHP**:
+  - 7.3
+  - 7.2
+  - 7.1
+  - 7.0
+  - 5.6
+- **MySQL**:
+  - 5.6
+  - 5.5
+- - - -
+
 ## See our [Wiki](https://github.com/bryanlittlefield/TUGBOAT/wiki) for more information.
