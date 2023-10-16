@@ -22,17 +22,21 @@
 ##  Supported Versions:
 
 - **PHP**:
-  - 8.1
-  - 8.0 (`stable`)
-  - 7.4
+  - 8.2
+  - 8.1 (`stable`)
+  - 8.0
 - **MySQL**:
   - 8.1
   - 8.0 (`stable`)
   - 5.7
+ 
+###  Beta RC
+  - 8.3
 
 ###  No Longer Maintained:
 
 - **PHP**:
+  - 7.4
   - 7.3
   - 7.2
   - 7.1
