@@ -29,9 +29,6 @@
   - 8.1
   - 8.0 (`stable`)
   - 5.7
- 
-###  Beta RC
-  - 8.3
 
 ###  No Longer Maintained:
 
