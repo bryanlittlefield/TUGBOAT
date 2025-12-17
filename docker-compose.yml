@@ -29,7 +29,7 @@ services:
         links:
             - db:mysql
             - redis:redis
-            - mailhog:mailhog
+            - mailpit:mailpit
         restart: on-failure
     db:
         env_file:
@@ -60,10 +60,10 @@ services:
         container_name: ${PROJECT_NAME}_redis
         ports:
             - "6379:6379"
-    mailhog:
-        image: mailhog/mailhog
-        container_name: ${PROJECT_NAME}_mailhog
-        hostname: mailhog
+    mailpit:
+        image: axllent/mailpit
+        container_name: ${PROJECT_NAME}_mailpit
+        hostname: mailpit
         ports:
             - "8025:8025"
             - "1025:1025"

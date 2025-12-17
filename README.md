@@ -2,13 +2,13 @@
 
 # Welcome to TUGBOAT
 
-> Built on top of the [Official](https://docs.docker.com/docker-hub/official_images/) Docker Images for [Php](https://hub.docker.com/_/php) and [MySQL](https://hub.docker.com/_/mysql), these preconfigured containers will jumpstart your php website or application development. If the environment requires further configurations dont sweat it, TUGBOAT can be extended to provided access to additional packages and configurations to the environment using [build scripts](https://github.com/bryanlittlefield/TUGBOAT/wiki/Running-Scripts-in-the-Web-Container-on-Build).  
+> Built on top of the [Official](https://docs.docker.com/docker-hub/official_images/) Docker Images for [Php](https://hub.docker.com/_/php) and [MySQL](https://hub.docker.com/_/mysql), these preconfigured containers will jumpstart your php website or application development. If the environment requires further configurations dont sweat it, TUGBOAT can be extended to provided access to additional packages and configurations to the environment using [build scripts](https://github.com/bryanlittlefield/TUGBOAT/wiki/Running-Scripts-in-the-Web-Container-on-Build).
 
 - - - -
 
 ##  Quick Start:
 - Install [Docker](https://docs.docker.com/engine/installation/)
-- Run Command: 
+- Run Command:
   ```
   git clone https://github.com/bryanlittlefield/TUGBOAT && cd TUGBOAT && docker-compose up -d && cd var/www/html
   ```
@@ -22,8 +22,9 @@
 ##  Supported Versions:
 
 - **PHP**:
-  - 8.3
-  - 8.2 (`stable`)
+  - 8.4
+  - 8.3 (`stable`)
+  - 8.2
   - 8.1
 - **MySQL**:
   - 8.1
